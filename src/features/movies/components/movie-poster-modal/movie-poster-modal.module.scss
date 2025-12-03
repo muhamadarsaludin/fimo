@@ -17,6 +17,7 @@
     height: 100vh;
     background-color: color-mix(in srgb, var(--m-color-background-main-primary-inv) 70%, transparent);
     transform: all .3s ease;
+    z-index: 200;
     &.m-open {
       display: flex;
       justify-content: center;

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--m-z-index-header);
+  z-index: 100;
   display: flex;
   background-color: var(--m-color-background-main-primary-default);
   transition: box-shadow 0.3s ease-in-out;

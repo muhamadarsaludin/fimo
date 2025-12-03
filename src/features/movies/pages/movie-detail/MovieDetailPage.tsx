@@ -1,66 +1,151 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Link, useParams } from "react-router-dom";
 import { fetchMovieDetail, selectMovieState } from "../../movieSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Loader from "@/components/loader/Loader";
+import styles from "./movie-detail-page.module.scss";
+import clsx from "clsx";
+import { LuArrowLeft } from "react-icons/lu";
 
 export default function MovieDetailPage() {
-   const { imdbID } = useParams<{ imdbID: string }>()
-    const dispatch = useAppDispatch()
-    const { selectedMovie, isLoading, error } =
-      useAppSelector(selectMovieState)
+  const { imdbID } = useParams<{ imdbID: string }>();
+  const dispatch = useAppDispatch();
+  const { selectedMovie, isLoading, error } = useAppSelector(selectMovieState);
 
-    useEffect(() => {
-      if (imdbID) {
-        dispatch(fetchMovieDetail(imdbID))
-      }
-    }, [dispatch, imdbID])
-
-    if (isLoading && !selectedMovie) {
-      //ganti pakai loader
-      return <p className="status-text">Loading movie details...</p>
+  // Fetch on mount or when imdbID changes
+  useEffect(() => {
+    if (imdbID) {
+      dispatch(fetchMovieDetail(imdbID));
     }
+  }, [dispatch, imdbID]);
 
-    if (error) {
-      return <p className="error-text">{error}</p>
-    }
+  // Poster fallback (update when movie changes)
+  const poster = selectedMovie?.Poster;
+  const initialPoster =
+    poster && poster !== "N/A" ? poster : "/placeholder.jpg";
 
-    if (!selectedMovie) {
-      return <p className="status-text">Movie not found.</p>
-    }
+  const [imgSrc, setImgSrc] = useState(initialPoster);
 
+  useEffect(() => {
+    // Reset poster when movie changes
+    setImgSrc(initialPoster);
+  }, [initialPoster]);
+
+  // Loading (no previous movie)
+  if (isLoading && !selectedMovie) {
     return (
-    <section className="movie-detail">
-      <Link to="/" className="back-link">
-        ← Back to list
+      <div className={clsx(styles["movie-detail"], "g-page")}>
+        <div className={styles["movie-detail__loading"]}>
+          <Loader />
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className={clsx(styles["movie-detail"], "g-page")}>
+        <p className={styles["movie-detail__error"]}>{error}</p>
+      </div>
+    );
+  }
+
+  // Movie not found
+  if (!selectedMovie) {
+    return (
+      <div className={clsx(styles["movie-detail"], "g-page")}>
+        <p className={styles["movie-detail__status"]}>Movie not found.</p>
+      </div>
+    );
+  }
+
+  // MAIN CONTENT
+  return (
+    <section className={clsx(styles["movie-detail"], "g-page")}>
+      <Link to="/" className={styles["movie-detail__back-link"]}>
+        <LuArrowLeft />
+        <span>Back to list</span>
       </Link>
-      <div className="movie-detail-layout">
-        {selectedMovie.Poster && selectedMovie.Poster !== 'N/A' && (
-          <img
-            src={selectedMovie.Poster}
-            alt={selectedMovie.Title}
-            className="movie-detail-poster"
-          />
-        )}
-        <div className="movie-detail-content">
-          <h2>{selectedMovie.Title}</h2>
-          <p className="movie-detail-meta">
-            {selectedMovie.Year} • {selectedMovie.Runtime} •{' '}
-            {selectedMovie.Genre}
-          </p>
-          <p className="movie-detail-plot">{selectedMovie.Plot}</p>
-          <div className="movie-detail-extra">
-            <p>
-              <strong>Director:</strong> {selectedMovie.Director}
-            </p>
-            <p>
-              <strong>Actors:</strong> {selectedMovie.Actors}
-            </p>
-            <p>
-              <strong>Awards:</strong> {selectedMovie.Awards}
-            </p>
+      <div className={styles["movie-detail__layout"]}>
+        <img
+          src={imgSrc}
+          alt={selectedMovie.Title}
+          className={styles["movie-detail__poster"]}
+          onError={() => setImgSrc("/placeholder.jpg")}
+        />
+
+        <div className={styles["movie-detail__content"]}>
+          <h2 className={styles["movie-detail__title"]}>
+            {selectedMovie.Title}
+          </h2>
+          <p className={styles["movie-detail__plot"]}>{selectedMovie.Plot}</p>
+          <div className={clsx(styles["movie-detail__info"], styles["table-wrapper"])}>
+            <table className={styles["table-info"]}>
+              <tbody>
+                <tr>
+                  <th>Year</th>
+                  <td>{selectedMovie.Year}</td>
+                </tr>
+                <tr>
+                  <th>Type</th>
+                  <td>{selectedMovie.Type}</td>
+                </tr>
+                <tr>
+                  <th>Runtime</th>
+                  <td>{selectedMovie.Runtime}</td>
+                </tr>
+                <tr>
+                  <th>Genre</th>
+                  <td>{selectedMovie.Genre}</td>
+                </tr>
+                <tr>
+                  <th>Director</th>
+                  <td>{selectedMovie.Director}</td>
+                </tr>
+                <tr>
+                  <th>Writer</th>
+                  <td>{selectedMovie.Writer}</td>
+                </tr>
+                <tr>
+                  <th>Actors</th>
+                  <td>{selectedMovie.Actors}</td>
+                </tr>
+                <tr>
+                  <th>Awards</th>
+                  <td>{selectedMovie.Awards}</td>
+                </tr>
+                <tr>
+                  <th>Rated</th>
+                  <td>{selectedMovie.Rated}</td>
+                </tr>
+                <tr>
+                  <th>Released</th>
+                  <td>{selectedMovie.Released}</td>
+                </tr>
+                <tr>
+                  <th>Language</th>
+                  <td>{selectedMovie.Language}</td>
+                </tr>
+                <tr>
+                  <th>Country</th>
+                  <td>{selectedMovie.Country}</td>
+                </tr>
+                <tr>
+                  <th>Ratings</th>
+                  <td>
+                    {Array.isArray(selectedMovie?.Ratings) && selectedMovie.Ratings.map((rating, index) => (
+                      <div key={index}>
+                          <strong>{rating.Source}:</strong> {rating.Value}
+                      </div>
+                  ))}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
