@@ -2,7 +2,7 @@
 
 **Fimo** is a modern movie search application built with **React**, **TypeScript**, **Redux Toolkit**, **Axios**, **Vite**, and **React Router**, consuming the public [OMDb API](http://www.omdbapi.com) (`http://www.omdbapi.com`).
 
-![Fimo Preview](./fimo.png)  
+![Fimo Preview](https://fimo.arsaludin.my.id/fimo.png)  
 
 ---
 
@@ -23,7 +23,7 @@ Infinite scroll (native, no plugin) for long results using OMDb pagination, limi
 
 Add your hosted demo link here (optional):
 
-[Live Demo](https://your-demo-link.com)
+[Live Demo](https://fimo.arsaludin.my.id/)
 
 ---
 
