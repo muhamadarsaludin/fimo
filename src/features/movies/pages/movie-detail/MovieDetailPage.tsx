@@ -12,7 +12,7 @@ export default function MovieDetailPage() {
   const { imdbID } = useParams<{ imdbID: string }>();
   const dispatch = useAppDispatch();
   const { selectedMovie, isLoading, error, favorites } = useAppSelector(selectMovieState);
-  const favorite = favorites?.some(f => f.imdbID === imdbID)
+  const favorite = favorites?.some(f => f.imdbID === selectedMovie?.imdbID || f.imdbID === imdbID)
   useEffect(() => {
     if (imdbID) {
       dispatch(fetchMovieDetail(imdbID));
@@ -28,6 +28,18 @@ export default function MovieDetailPage() {
   useEffect(() => {
     setImgSrc(initialPoster);
   }, [initialPoster]);
+
+  const handleFavoriteClick = async () => {
+    const wasFavorite = favorite
+    if (selectedMovie) {
+      dispatch(toggleFavorite(selectedMovie))
+      if (!wasFavorite) {
+        await alertSuccess(`${selectedMovie.Title} has been added to favorites.`)
+      } else {
+        await alertSuccess(`${selectedMovie.Title} has been removed from favorites.`)
+      }
+    }
+  }
 
   // Loading (no previous movie)
   if (isLoading && !selectedMovie) {
@@ -58,18 +70,6 @@ export default function MovieDetailPage() {
     );
   }
 
-  const handleFavoriteClick = async () => {
-    const wasFavorite = favorite
-    if (selectedMovie) {
-      dispatch(toggleFavorite(selectedMovie))
-      if (!wasFavorite) {
-        await alertSuccess(`${selectedMovie.Title} has been added to favorites.`)
-      } else {
-        await alertSuccess(`${selectedMovie.Title} has been removed from favorites.`)
-      }
-    }
-  }
-
   // MAIN CONTENT
   return (
     <section className={clsx(styles["movie-detail"], "g-page")}>
@@ -85,7 +85,7 @@ export default function MovieDetailPage() {
           onError={() => setImgSrc("/placeholder.jpg")}
         />
 
-        <div className={styles["movie-detail__content"]}>
+        <article className={styles["movie-detail__content"]}>
           <div className={styles["movie-detail__title-wrapper"]}>
             <h2 className={styles["movie-detail__title"]}>
               {selectedMovie.Title}
@@ -163,7 +163,8 @@ export default function MovieDetailPage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </article>
+        
       </div>
     </section>
   );

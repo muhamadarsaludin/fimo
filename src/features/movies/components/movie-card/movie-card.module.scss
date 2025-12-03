@@ -13,7 +13,6 @@
       }
       .movie-card__poster-icon {
         opacity: 1;
-        visibility: visible;
       }
     }
     &-image {
@@ -25,7 +24,6 @@
     &-icon {
       all: unset;
       opacity: 0;
-      visibility: hidden;
       display: flex;
       transition: all 0.3s ease;
       position: absolute;

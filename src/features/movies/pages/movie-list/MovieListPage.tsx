@@ -72,7 +72,7 @@ export default function MovieList() {
       {!isLoading && items.length === 0 && (
         <p className={styles["movie-list__text-status"]}>No movies found.</p>
       )}
-      <div className={styles["movie-list__observer"]} ref={sentinelRef} />
+      <div className={styles["movie-list__observer"]} ref={sentinelRef} data-testid="sentinel"/>
     </div>
   )
 }

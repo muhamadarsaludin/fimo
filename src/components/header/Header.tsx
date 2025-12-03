@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router"
+import { Link, NavLink } from "react-router-dom"
 import clsx from "clsx"
 import styles from "./header.module.scss"
 import MovieSearchBar from "@/features/movies/components/movie-search-bar/MovieSearchBar"
@@ -28,11 +28,11 @@ export default function Header() {
       )
     }>
       <div className={clsx(styles.header__content, "g-container")}>
-        <Link to="/" className={styles.header__logo} aria-label="Freemove Logo">
+        <Link to="/" className={styles.header__logo} aria-label="Fimo Logo">
           <img
             className={styles["header__logo-image"]}
             src="/logo.svg"
-            alt="Freemove Logo"
+            alt="Fimo Logo"
           />
         </Link>
         <MovieSearchBar className={styles.header__search}/>

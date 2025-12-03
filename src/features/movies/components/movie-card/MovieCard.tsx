@@ -43,7 +43,7 @@ export default function MovieCard({movie} : MovieCardProps) {
   return (
     <Link to={`/movies/${movie.imdbID}`}>
       <article className={styles["movie-card"]}>
-        <div className={styles["movie-card__poster"]} onClick={handlePosterClick}>
+        <div className={styles["movie-card__poster"]} onClick={handlePosterClick} data-testid="movie-card-poster">
           <img
             src={imgSrc}
             alt={movie.Title}
@@ -53,6 +53,7 @@ export default function MovieCard({movie} : MovieCardProps) {
           <button
             className={styles["movie-card__poster-icon"]}
             onClick={handlePosterClick}
+             aria-label="Expand poster"
           >
             <LuExpand />
           </button>

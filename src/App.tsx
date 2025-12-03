@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import MainLayout from "./layouts/MainLayout"
 import MovieListPage from "./features/movies/pages/movie-list/MovieListPage"
 import MovieDetailPage from "./features/movies/pages/movie-detail/MovieDetailPage"
