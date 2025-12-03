@@ -58,3 +58,8 @@ body {
   min-height: calc(100vh - var(--m-dimension-1600));
   box-sizing: border-box;
 }
+
+.g-page {
+  padding-top: var(--m-dimension-1200);
+  padding-bottom: var(--m-dimension-1200);
+}

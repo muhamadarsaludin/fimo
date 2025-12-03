@@ -1,7 +1,7 @@
 .movie-list {
   display: flex;
   flex-direction: column;
-  gap: var(--m-dimension-2000);
+  gap: var(--m-dimension-600);
   &__grid {
     display: grid;
     gap: var(--m-dimension-600);
@@ -12,5 +12,17 @@
     @include breakpoints.mobile {
       grid-template-columns: 1fr 1fr;
     }
+  }
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__text-status {
+    text-align: center;
+    font: var(--m-text-title-2);
+  }
+  &__observer {
+    margin-top: var(--m-dimension-600);
   }
 }
