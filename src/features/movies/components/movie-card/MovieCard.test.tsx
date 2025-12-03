@@ -74,7 +74,7 @@ describe('MovieCard (Redux + modal + favorite)', () => {
   })
 
   it('adds movie to favorites when favorite button clicked', () => {
-    const { store } = renderWithProviders(<MovieCard movie={mockMovie} />)
+    renderWithProviders(<MovieCard movie={mockMovie} />)
     const favoriteButton = screen.getByRole('button', { name: /add to favorites/i })
     expect(favoriteButton).toBeInTheDocument()
   })
@@ -86,13 +86,13 @@ describe('MovieCard (Redux + modal + favorite)', () => {
   })
 
   it('opens modal when expand button clicked', () => {
-    const { store } = renderWithProviders(<MovieCard movie={mockMovie} />)
+    renderWithProviders(<MovieCard movie={mockMovie} />)
     const expandButton = screen.getByRole('button', { name: /expand/i })
     fireEvent.click(expandButton)
   })
 
   it('opens modal when poster div clicked', () => {
-    const { store } = renderWithProviders(<MovieCard movie={mockMovie} />)
+    renderWithProviders(<MovieCard movie={mockMovie} />)
     const posterDiv = screen.getByTestId('movie-card-poster')
     fireEvent.click(posterDiv)
   })

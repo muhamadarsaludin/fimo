@@ -1,9 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { movieReducer, toggleFavorite, fetchMovieDetail } from '@/features/movies/movieSlice'
+import { movieReducer } from '@/features/movies/movieSlice'
 import MovieDetailPage from './MovieDetailPage'
 import type { MovieDetail, MovieSummary } from '@/features/movies/types'
 
@@ -111,7 +111,7 @@ describe('MovieDetailPage (Redux only)', () => {
   })
 
   it('should render favorite button and add to favorites', () => {
-    const { store } = renderWithProviders(<MovieDetailPage />, { selectedMovie: mockMovie })
+    renderWithProviders(<MovieDetailPage />, { selectedMovie: mockMovie })
     const favButton = screen.getByRole('button', { name: /add to favorites/i })
     expect(favButton).toBeInTheDocument()
   })
