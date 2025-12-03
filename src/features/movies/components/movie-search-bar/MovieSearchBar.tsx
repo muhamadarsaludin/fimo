@@ -10,6 +10,7 @@ import { useDebounce } from 'react-use';
 import SearchBar from '@/components/search-bar/SearchBar';
 import styles from "./movie-search-bar.module.scss"
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 const DEBOUNCE_MS = 400;
 
 interface MovieSearchBarProps {
@@ -17,6 +18,7 @@ interface MovieSearchBarProps {
 }
 
 export default function MovieSearchBar({className}: MovieSearchBarProps) {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const { query, autocompleteSuggestions } = useAppSelector(selectMovieState);
   
@@ -62,6 +64,10 @@ export default function MovieSearchBar({className}: MovieSearchBarProps) {
     dispatch(setQuery(value));
     dispatch(clearAutocomplete());
   };
+  
+  function handleFocus(_: React.FocusEvent<HTMLInputElement>): void {
+    navigate("/")
+  }
 
   const hasSuggestions = useMemo(
     () => autocompleteSuggestions.length > 0,
@@ -72,6 +78,7 @@ export default function MovieSearchBar({className}: MovieSearchBarProps) {
     <div className={clsx(styles["movie-search-bar"], className)}>
       <SearchBar 
         defaultValue={keyword}
+        onFocus={handleFocus}
         onChange={handleChange}
         onSubmit={handleSubmit}
         onClear={handleClear}

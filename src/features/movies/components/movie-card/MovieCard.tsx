@@ -21,7 +21,7 @@ export default function MovieCard({movie} : MovieCardProps) {
     dispatch(openPosterModal(imgSrc))
   }
   return (
-    <Link to={`/movie/${movie.imdbID}`}>
+    <Link to={`/movies/${movie.imdbID}`}>
       <article className={styles["movie-card"]}>
         <div className={styles["movie-card__poster"]} onClick={handlePosterClick}>
           <img

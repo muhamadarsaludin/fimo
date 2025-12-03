@@ -8,6 +8,7 @@ interface SearchBarProps {
   onChange?: (value: string, e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit?: (value: string, e: React.FormEvent<HTMLFormElement>) => void
   onClear?: (value: string) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   placeholder?: string
   showStartIcon?: boolean
   showClear?: boolean
@@ -20,6 +21,7 @@ export default function SearchBar({
   onChange,
   onSubmit,
   onClear,
+  onFocus,
   placeholder = 'Search here...',
   showStartIcon = true,
   showClear = true,
@@ -28,7 +30,9 @@ export default function SearchBar({
 } : SearchBarProps) {
   const [value, setValue] = useState(defaultValue)
   const inputRef = useRef<HTMLInputElement | null>(null)
-
+  function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
+    onFocus?.(e)
+  }
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const next = e.target.value
     setValue(next)
@@ -59,6 +63,7 @@ export default function SearchBar({
         className={styles['search-bar__input']}
         type="text"
         value={value}
+        onFocus={handleFocus}
         onChange={handleChange}
         placeholder={placeholder}
         aria-label={placeholder}
