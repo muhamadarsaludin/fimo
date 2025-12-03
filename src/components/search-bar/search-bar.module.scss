@@ -7,6 +7,11 @@
   background-color: var(--m-color-neutral-100);
   min-height: var(--m-dimension-1100);
   box-sizing: border-box;
+  transition: all 0.3s ease;
+  &.m-focus {
+    background-color: var(--m-color-neutral-0);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--m-color-rose-500) 40%, transparent);
+  }
   &__icon {
     width: var(--m-dimension-500);
     height: var(--m-dimension-500);
@@ -38,6 +43,11 @@
     height: var(--m-dimension-700);
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: var(--m-color-rose-400);
+    }
     svg {
       width: var(--m-dimension-400);
       height: var(--m-dimension-400);

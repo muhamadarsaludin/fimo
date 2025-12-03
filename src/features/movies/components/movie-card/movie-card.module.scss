@@ -27,7 +27,7 @@
       opacity: 0;
       visibility: hidden;
       display: flex;
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -35,6 +35,9 @@
       color: var(--m-color-neutral-0);
       padding: var(--m-dimension-100);
       background-color: var(--m-color-rose-500);
+      &:hover {
+        background-color: var(--m-color-rose-400);
+      }
       svg {
         width: var(--m-dimension-1200);
         height: var(--m-dimension-1200);

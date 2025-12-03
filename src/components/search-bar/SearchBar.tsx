@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import styles from "./search-bar.module.scss"
 import { LuSearch, LuX } from "react-icons/lu"
-import { useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 
 interface SearchBarProps {
   defaultValue?: string
@@ -9,6 +9,7 @@ interface SearchBarProps {
   onSubmit?: (value: string, e: React.FormEvent<HTMLFormElement>) => void
   onClear?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   placeholder?: string
   showStartIcon?: boolean
   showClear?: boolean
@@ -22,6 +23,7 @@ export default function SearchBar({
   onSubmit,
   onClear,
   onFocus,
+  onBlur,
   placeholder = 'Search here...',
   showStartIcon = true,
   showClear = true,
@@ -29,9 +31,16 @@ export default function SearchBar({
   className,
 } : SearchBarProps) {
   const [value, setValue] = useState(defaultValue)
+  const [focus, setFocus] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
+
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
+    setFocus(true)
     onFocus?.(e)
+  }
+  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    setFocus(false)
+    onBlur?.(e)
   }
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const next = e.target.value
@@ -52,7 +61,7 @@ export default function SearchBar({
   
   return (
     <form
-      className={clsx(styles['search-bar'], className)}
+      className={clsx(styles['search-bar'], focus && styles["m-focus"], className)}
       onSubmit={handleSubmit}
       role="search"
       aria-label="Search"
@@ -64,6 +73,7 @@ export default function SearchBar({
         type="text"
         value={value}
         onFocus={handleFocus}
+        onBlur={handleBlur}
         onChange={handleChange}
         placeholder={placeholder}
         aria-label={placeholder}

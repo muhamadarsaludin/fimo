@@ -64,4 +64,12 @@ body {
 .g-page {
   padding-top: var(--m-dimension-1200);
   padding-bottom: var(--m-dimension-1200);
+  @include breakpoints.tablet {
+    padding-top: var(--m-dimension-1000);
+    padding-bottom: var(--m-dimension-1000);
+  }
+  @include breakpoints.mobile {
+    padding-top: var(--m-dimension-800);
+    padding-bottom: var(--m-dimension-800);
+  }
 }
