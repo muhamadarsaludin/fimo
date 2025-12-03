@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   &__poster {
     border-radius: var(--m-dimension-400);
     aspect-ratio: 4/3;
@@ -24,19 +23,22 @@
       pointer-events: none;
     }
     &-icon {
+      all: unset;
       opacity: 0;
       visibility: hidden;
+      display: flex;
       transition: all 0.5s ease;
-      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       color: var(--m-color-neutral-0);
-      width: var(--m-dimension-1200);
-      height: var(--m-dimension-1200);
       padding: var(--m-dimension-100);
       background-color: var(--m-color-rose-500);
+      svg {
+        width: var(--m-dimension-1200);
+        height: var(--m-dimension-1200);
+      }
     }
   }
   &__info {

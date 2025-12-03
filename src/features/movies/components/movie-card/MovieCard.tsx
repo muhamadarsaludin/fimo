@@ -12,17 +12,14 @@ interface MovieCardProps {
 
 export default function MovieCard({movie} : MovieCardProps) {
   const dispatch = useAppDispatch()
-
-  const handlePosterClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-    e.preventDefault()
-    if (movie.Poster && movie.Poster !== 'N/A') {
-      dispatch(openPosterModal(movie.Poster))
-      console.log(movie.Poster)
-    }
-  }
   const posterSrc = movie.Poster && movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'
   const [imgSrc, setImgSrc] = useState(posterSrc)
+
+  const handlePosterClick = (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    dispatch(openPosterModal(imgSrc))
+  }
   return (
     <Link to={`/movie/${movie.imdbID}`}>
       <article className={styles["movie-card"]}>
@@ -33,15 +30,17 @@ export default function MovieCard({movie} : MovieCardProps) {
             className={styles["movie-card__poster-image"]}
             onError={() => setImgSrc('/placeholder.jpg')}
           />
-          <LuExpand className={styles["movie-card__poster-icon"]}/>
+          <button className={styles["movie-card__poster-icon"]} onClick={handlePosterClick}>
+            <LuExpand/>
+          </button>
         </div>
         <div className={styles["movie-card__info"]}>
-          <h3 className={styles["movie-card__title"]}>
-            {movie.Title}
-          </h3>
           <p className={styles["movie-card__meta"]}>
             {movie.Year} • {movie.Type}
           </p>
+          <h3 className={styles["movie-card__title"]}>
+            {movie.Title}
+          </h3>
         </div>
       </article>
     </Link>

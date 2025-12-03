@@ -3,12 +3,18 @@ import { closePosterModal, selectMovieState } from "../../movieSlice"
 import styles from "./movie-poster-modal.module.scss"
 import { LuX } from "react-icons/lu"
 import clsx from "clsx"
+import { lockScroll, unlockScroll } from "@/utils/scroll-lock"
 
 export default function PosterModal() {
   const dispatch = useAppDispatch()
   const { isModalOpen, posterForModal } = useAppSelector(selectMovieState)
-
-  if (!isModalOpen || !posterForModal) {
+  if (isModalOpen) {
+    lockScroll("modal-poster")
+  } else {
+    unlockScroll("modal-poster")
+  }
+  
+  if (!posterForModal) {
     return null
   }
 
