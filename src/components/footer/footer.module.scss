@@ -1,0 +1,9 @@
+.footer {
+  border-top: var(--m-dimension-half) solid var(--m-color-neutral-400);
+  background-color: var(--m-color-neutral-0);
+  &__content {
+    display: flex;
+    justify-content: center;
+    padding: var(--m-dimension-500);
+  }
+}

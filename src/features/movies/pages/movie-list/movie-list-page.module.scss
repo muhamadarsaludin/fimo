@@ -1,0 +1,16 @@
+.movie-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--m-dimension-2000);
+  &__grid {
+    display: grid;
+    gap: var(--m-dimension-600);
+    grid-template-columns: 1fr 1fr 1fr;
+    @include breakpoints.tablet {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include breakpoints.mobile {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--m-z-index-header);
+  display: flex;
+  background-color: var(--m-color-background-main-primary-default);
+  transition: box-shadow 0.3s ease-in-out;
+  
+  &.m-shadow {
+    box-shadow: 2px 4px 6px color-mix(in srgb, var(--m-color-border-main-primary-default) 30%, transparent);
+  }
+  
+  &__content {
+    display: flex;
+    align-items: center;
+    height: var(--m-dimension-2000);
+    justify-content: space-between;
+    gap: var(--m-dimension-600);
+  }
+
+  &__search {
+    flex: 1;
+  }
+}

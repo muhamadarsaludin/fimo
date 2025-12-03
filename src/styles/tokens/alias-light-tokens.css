@@ -1,0 +1,86 @@
+/**
+ * +-------------------------------------------------------------+
+ * |                     MIRACLE DESIGN TOKENS                   |
+ * +-------------------------------------------------------------+
+ * ⚠️ WARNING: Don't edit directly, this file was auto-generated.
+ * Update the source tokens instead.
+ */
+
+:root {
+  --m-color-background-main-primary-default: var(--m-color-neutral-0);
+  --m-color-background-main-primary-inv: var(--m-color-neutral-950);
+  --m-color-background-main-secondary-default: var(--m-color-neutral-50);
+  --m-color-background-main-secondary-inv: var(--m-color-neutral-900);
+  --m-color-background-disabled-primary-default: var(--m-color-neutral-200);
+  --m-color-background-disabled-primary-inv: var(--m-color-neutral-800);
+  --m-color-background-brand-primary-default: var(--m-color-rose-500);
+  --m-color-background-brand-primary-hover: var(--m-color-rose-400);
+  --m-color-background-brand-secondary-default: var(--m-color-rose-100);
+  --m-color-background-brand-secondary-hover: var(--m-color-rose-200);
+  --m-color-background-semantic-info-primary-default: var(--m-color-blue-500);
+  --m-color-background-semantic-info-primary-hover: var(--m-color-blue-400);
+  --m-color-background-semantic-info-secondary-default: var(--m-color-blue-100);
+  --m-color-background-semantic-info-secondary-hover: var(--m-color-blue-200);
+  --m-color-background-semantic-danger-primary-default: var(--m-color-red-500);
+  --m-color-background-semantic-danger-primary-hover: var(--m-color-red-400);
+  --m-color-background-semantic-danger-secondary-default: var(--m-color-red-200);
+  --m-color-background-semantic-danger-secondary-hover: var(--m-color-red-300);
+  --m-color-background-semantic-success-primary-default: var(--m-color-green-500);
+  --m-color-background-semantic-success-primary-hover: var(--m-color-green-400);
+  --m-color-background-semantic-success-secondary-default: var(--m-color-green-200);
+  --m-color-background-semantic-success-secondary-hover: var(--m-color-green-300);
+  --m-color-background-semantic-warning-primary-default: var(--m-color-yellow-300);
+  --m-color-background-semantic-warning-primary-hover: var(--m-color-yellow-200);
+  --m-color-background-semantic-warning-light-default: var(--m-color-yellow-50);
+  --m-color-background-semantic-warning-light-hover: var(--m-color-yellow-100);
+  --m-color-background-accent-indigo-primary-default: var(--m-color-indigo-500);
+  --m-color-background-accent-indigo-primary-hover: var(--m-color-indigo-400);
+  --m-color-background-accent-indigo-secondary-default: var(--m-color-indigo-200);
+  --m-color-background-accent-indigo-secondary-hover: var(--m-color-indigo-300);
+  --m-color-foreground-main-primary-default: var(--m-color-neutral-950);
+  --m-color-foreground-main-primary-inv: var(--m-color-neutral-0);
+  --m-color-foreground-main-secondary-default: var(--m-color-neutral-600);
+  --m-color-foreground-main-secondary-inv: var(--m-color-neutral-400);
+  --m-color-foreground-disabled-primary-default: var(--m-color-neutral-300);
+  --m-color-foreground-brand-primary-default: var(--m-color-rose-500);
+  --m-color-foreground-brand-primary-inv: var(--m-color-rose-500);
+  --m-color-foreground-semantic-info-primary-default: var(--m-color-blue-500);
+  --m-color-foreground-semantic-danger-primary-default: var(--m-color-red-500);
+  --m-color-foreground-semantic-success-primary-default: var(--m-color-green-500);
+  --m-color-foreground-semantic-warning-primary-default: var(--m-color-yellow-300);
+  --m-color-foreground-accent-indigo-primary-default: var(--m-color-indigo-500);
+  --m-color-border-main-primary-default: var(--m-color-neutral-950);
+  --m-color-border-main-primary-inv: var(--m-color-neutral-0);
+  --m-color-border-main-secondary-default: var(--m-color-neutral-600);
+  --m-color-border-main-secondary-inv: var(--m-color-neutral-400);
+  --m-color-border-disabled-primary-default: var(--m-color-neutral-300);
+  --m-color-border-brand-primary-default: var(--m-color-rose-500);
+  --m-color-border-brand-secondary-default: var(--m-color-rose-100);
+  --m-color-border-semantic-info-primary-default: var(--m-color-blue-500);
+  --m-color-border-semantic-info-secondary-default: var(--m-color-blue-100);
+  --m-color-border-semantic-danger-primary-default: var(--m-color-red-500);
+  --m-color-border-semantic-danger-secondary-default: var(--m-color-red-100);
+  --m-color-border-semantic-success-primary-default: var(--m-color-green-500);
+  --m-color-border-semantic-success-secondary-default: var(--m-color-green-100);
+  --m-color-border-semantic-warning-primary-default: var(--m-color-yellow-300);
+  --m-color-border-semantic-warning-secondary-default: var(--m-color-yellow-50);
+  --m-color-border-accent-indigo-primary-default: var(--m-color-indigo-500);
+  --m-color-border-accent-indigo-secondary-default: var(--m-color-indigo-100);
+  --m-dimension-zero: var(--m-dimension-0);
+  --m-dimension-half: var(--m-dimension-13);
+  --m-text-xs: var(--m-font-weight-400) var(--m-font-size-10)/var(--m-line-height-14) var(--m-font-family-outfit);
+  --m-text-small: var(--m-font-weight-400) var(--m-font-size-12)/var(--m-line-height-16) var(--m-font-family-outfit);
+  --m-text-body-3: var(--m-font-weight-400) var(--m-font-size-14)/var(--m-line-height-20) var(--m-font-family-outfit);
+  --m-text-body-2: var(--m-font-weight-400) var(--m-font-size-16)/var(--m-line-height-24) var(--m-font-family-outfit);
+  --m-text-body-1: var(--m-font-weight-400) var(--m-font-size-18)/var(--m-line-height-26) var(--m-font-family-outfit);
+  --m-text-subtitle-2: var(--m-font-weight-500) var(--m-font-size-20)/var(--m-line-height-28) var(--m-font-family-outfit);
+  --m-text-subtitle-1: var(--m-font-weight-500) var(--m-font-size-22)/var(--m-line-height-30) var(--m-font-family-outfit);
+  --m-text-title-2: var(--m-font-weight-500) var(--m-font-size-24)/var(--m-line-height-32) var(--m-font-family-outfit);
+  --m-text-title-1: var(--m-font-weight-500) var(--m-font-size-28)/var(--m-font-size-36) var(--m-font-family-outfit);
+  --m-text-heading-3: var(--m-font-weight-600) var(--m-font-size-32)/var(--m-font-size-40) var(--m-font-family-outfit);
+  --m-text-heading-2: var(--m-font-weight-600) var(--m-font-size-40)/var(--m-font-size-48) var(--m-font-family-outfit);
+  --m-text-heading-1: var(--m-font-weight-600) var(--m-font-size-48)/var(--m-font-size-56) var(--m-font-family-outfit);
+  --m-text-display-3: var(--m-font-weight-600) var(--m-font-size-56)/var(--m-line-height-64) var(--m-font-family-outfit);
+  --m-text-display-2: var(--m-font-weight-600) var(--m-font-size-64)/var(--m-line-height-72) var(--m-font-family-outfit);
+  --m-text-display-1: var(--m-font-weight-600) var(--m-font-size-72)/var(--m-line-height-80) var(--m-font-family-outfit);
+}

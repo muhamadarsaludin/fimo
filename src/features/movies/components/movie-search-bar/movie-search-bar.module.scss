@@ -1,0 +1,30 @@
+.movie-search-bar {
+  position: relative;
+  &__suggestions {
+    list-style: none;
+    padding-left: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + var(--m-dimension-400));
+    padding: var(--m-dimension-400);
+    background-color: var(--m-color-neutral-0);
+    border-radius: var(--m-dimension-200);
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--m-color-neutral-950) 20%, transparent),
+    0 4px 12px color-mix(in srgb, var(--m-color-neutral-950) 15%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-dimension-100);
+    .suggestion {
+      cursor: pointer;
+      padding: var(--m-dimension-200);
+      border-radius: var(--m-dimension-1000);
+      transition: all 0.2s ease;
+      &:hover {
+        color: var(--m-color-neutral-950);
+        background-color: var(--m-color-rose-200);
+      }
+      
+    }
+  }
+}

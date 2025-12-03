@@ -1,0 +1,34 @@
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &__poster {
+    border-radius: var(--m-dimension-400);
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    &-image {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__info {
+    padding: var(--m-dimension-400);
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    font: var(--m-text-title-1);
+    font-weight: var(--m-font-weight-600);
+    color: var(--m-color-foreground-main-primary-default);
+    margin-bottom: var(--m-dimension-100);
+    @include breakpoints.tablet {
+      font: var(--m-text-title-2);
+      font-weight: var(--m-font-weight-600);
+    }
+    @include breakpoints.mobile {
+      font: var(--m-text-title-2);
+      font-weight: var(--m-font-weight-600);
+    }
+  }
+}
