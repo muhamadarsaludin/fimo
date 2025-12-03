@@ -1,0 +1,47 @@
+.modal {
+  position: relative;
+  width: 400px;
+  object-fit: 4.5/6;
+  &__overlay {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: color-mix(in srgb, var(--m-color-background-main-primary-inv) 70%, transparent);
+    transform: all .3s ease;
+    &.m-open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: visible;
+      opacity: 100%;
+    }
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--m-dimension-400);
+  }
+  &__close {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    border-radius: 50%;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    padding: var(--m-dimension-100);
+    background-color: var(--m-color-red-500);
+    &-icon {
+      width: var(--m-dimension-400);
+      height: var(--m-dimension-400);
+      color: var(--m-color-neutral-0);
+    }
+  }
+}

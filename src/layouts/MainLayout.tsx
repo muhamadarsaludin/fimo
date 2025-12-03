@@ -1,6 +1,7 @@
 import BackToTop from "@/components/back-to-top/BackToTop";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import MoviePosterModal from "@/features/movies/components/movie-poster-modal/MoviePosterModal";
 import { Outlet } from "react-router";
 
 export default function MainLayout() {
@@ -12,6 +13,7 @@ export default function MainLayout() {
       </div>
       <Footer/>
       <BackToTop/>
+      <MoviePosterModal />
     </main>
   )
 }

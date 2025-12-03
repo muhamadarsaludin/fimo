@@ -3,6 +3,8 @@ import { useAppDispatch } from "@/store/hooks"
 import { openPosterModal } from "../../movieSlice"
 import type { MovieSummary } from "../../types"
 import styles from "./movie-card.module.scss"
+import { useState } from 'react'
+import { LuExpand } from 'react-icons/lu'
 
 interface MovieCardProps {
   movie: MovieSummary
@@ -17,19 +19,21 @@ export default function MovieCard({movie} : MovieCardProps) {
     if (movie.Poster && movie.Poster !== 'N/A') {
       dispatch(openPosterModal(movie.Poster))
       console.log(movie.Poster)
-      
     }
   }
   const posterSrc = movie.Poster && movie.Poster !== 'N/A' ? movie.Poster : '/placeholder.jpg'
+  const [imgSrc, setImgSrc] = useState(posterSrc)
   return (
     <Link to={`/movie/${movie.imdbID}`}>
       <article className={styles["movie-card"]}>
         <div className={styles["movie-card__poster"]} onClick={handlePosterClick}>
           <img
-            src={posterSrc}
+            src={imgSrc}
             alt={movie.Title}
             className={styles["movie-card__poster-image"]}
+            onError={() => setImgSrc('/placeholder.jpg')}
           />
+          <LuExpand className={styles["movie-card__poster-icon"]}/>
         </div>
         <div className={styles["movie-card__info"]}>
           <h3 className={styles["movie-card__title"]}>

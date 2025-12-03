@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router"
 import MainLayout from "./layouts/MainLayout"
 import MovieListPage from "./features/movies/pages/movie-list/MovieListPage"
-import "./app.css"
 
 export default function App() {
   return (

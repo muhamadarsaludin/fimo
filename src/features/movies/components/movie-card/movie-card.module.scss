@@ -7,9 +7,36 @@
     border-radius: var(--m-dimension-400);
     aspect-ratio: 4/3;
     overflow: hidden;
+    position: relative;
+    &:hover {
+      img {
+        filter: blur(5px);
+      }
+      .movie-card__poster-icon {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
     &-image {
       width: 100%;
       object-fit: cover;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    &-icon {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--m-color-neutral-0);
+      width: var(--m-dimension-1200);
+      height: var(--m-dimension-1200);
+      padding: var(--m-dimension-100);
+      background-color: var(--m-color-rose-500);
     }
   }
   &__info {
