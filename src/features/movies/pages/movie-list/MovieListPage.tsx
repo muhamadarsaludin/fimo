@@ -18,7 +18,7 @@ export default function MovieList() {
   }, [dispatch, query])
 
   const [fetchCount, setFetchCount] = useState(0)
-  const MAX_FETCH = 2
+  const MAX_FETCH = 4
   useEffect(() => {
     const sentinel = sentinelRef.current
     if (!sentinel) return
