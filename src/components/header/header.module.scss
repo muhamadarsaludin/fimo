@@ -18,9 +18,53 @@
     height: var(--m-dimension-2000);
     justify-content: space-between;
     gap: var(--m-dimension-600);
+    @include breakpoints.mobile {
+      gap: var(--m-dimension-400);
+    }
+  }
+
+  &__logo-image {
+    @include breakpoints.mobile {
+      width: var(--m-dimension-800);
+      height: var(--m-dimension-800);
+    }
   }
 
   &__search {
     flex: 1;
+
+  }
+
+  &__favorites {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: var(--m-dimension-100);
+    @include breakpoints.mobile {
+      span {
+        display: none;
+      }
+      padding: var(--m-dimension-200);
+      border-radius: var(--m-dimension-200);
+      &:hover {
+        color: var(--m-color-neutral-0);
+        background-color: var(--m-color-rose-400);
+      }
+    }
+    &:hover {
+      color: var(--m-color-rose-400);
+      @include breakpoints.mobile {
+        color: var(--m-color-neutral-0);
+      }
+    }
+    &:global {
+      &.active {
+        color: var(--m-color-rose-500);
+        @include breakpoints.mobile {
+          background-color: var(--m-color-rose-500);
+          color: var(--m-color-neutral-0);
+        }
+      }
+    }
   }
 }

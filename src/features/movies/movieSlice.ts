@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/tool
 import type { FetchMoviesArgs, FetchMoviesResult, MovieDetail, MovieState, MovieSummary } from "./types";
 import type { RootState } from "@/store";
 import { getMovieById, getMoviesByQuery } from "./api";
+import * as favoritesDb from '@/services/favoritesDb'
 
 const initialState: MovieState = {
   query: "Batman",
@@ -11,9 +12,37 @@ const initialState: MovieState = {
   isLoading: false,
   autocompleteSuggestions: [],
   isModalOpen: false,
+  favorites: []
 }
 
 // Thunk
+export const loadFavorites = createAsyncThunk<MovieSummary[]>(
+  "movie/loadFavorites",
+  async () => {
+    return await favoritesDb.getAllFavorites();
+  }
+)
+
+export const toggleFavorite = createAsyncThunk<
+  { type: "add" | "remove"; movie?: MovieSummary; imdbID?: string },
+  MovieSummary,
+  { state: RootState }
+>(
+  "movie/toggleFavorite",
+  async (movie, { getState }) => {
+    const { favorites } = getState().movie;
+    const isFav = favorites.some((m) => m.imdbID === movie.imdbID);
+
+    if (isFav) {
+      await favoritesDb.removeFavorite(movie.imdbID);
+      return { type: "remove", imdbID: movie.imdbID };
+    } else {
+      await favoritesDb.addFavorite(movie);
+      return { type: "add", movie };
+    }
+  }
+);
+
 export const fetchMovies = createAsyncThunk<FetchMoviesResult,FetchMoviesArgs>(
   "movie/fetchMovies",
   async ({query, page = 1, append = false}) => {
@@ -97,6 +126,22 @@ const movieSlice = createSlice({
       .addCase(fetchAutocomplete.fulfilled, (state, action) => {
         state.autocompleteSuggestions = action.payload
       })
+      .addCase(loadFavorites.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loadFavorites.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.favorites = action.payload;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        if (action.payload.type === "add") {
+          state.favorites.push(action.payload.movie!);
+        } else {
+          state.favorites = state.favorites.filter(
+            (m) => m.imdbID !== action.payload.imdbID
+          );
+        }
+      });
   }
 })
 

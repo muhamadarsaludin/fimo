@@ -1,25 +1,24 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Link, useParams } from "react-router-dom";
-import { fetchMovieDetail, selectMovieState } from "../../movieSlice";
+import { fetchMovieDetail, selectMovieState, toggleFavorite } from "../../movieSlice";
 import { useEffect, useState } from "react";
 import Loader from "@/components/loader/Loader";
 import styles from "./movie-detail-page.module.scss";
 import clsx from "clsx";
-import { LuArrowLeft } from "react-icons/lu";
+import { LuArrowLeft, LuHeart } from "react-icons/lu";
+import { alertSuccess } from "@/services/alert";
 
 export default function MovieDetailPage() {
   const { imdbID } = useParams<{ imdbID: string }>();
   const dispatch = useAppDispatch();
-  const { selectedMovie, isLoading, error } = useAppSelector(selectMovieState);
-
-  // Fetch on mount or when imdbID changes
+  const { selectedMovie, isLoading, error, favorites } = useAppSelector(selectMovieState);
+  const favorite = favorites?.some(f => f.imdbID === imdbID)
   useEffect(() => {
     if (imdbID) {
       dispatch(fetchMovieDetail(imdbID));
     }
   }, [dispatch, imdbID]);
 
-  // Poster fallback (update when movie changes)
   const poster = selectedMovie?.Poster;
   const initialPoster =
     poster && poster !== "N/A" ? poster : "/placeholder.jpg";
@@ -27,7 +26,6 @@ export default function MovieDetailPage() {
   const [imgSrc, setImgSrc] = useState(initialPoster);
 
   useEffect(() => {
-    // Reset poster when movie changes
     setImgSrc(initialPoster);
   }, [initialPoster]);
 
@@ -60,6 +58,18 @@ export default function MovieDetailPage() {
     );
   }
 
+  const handleFavoriteClick = async () => {
+    const wasFavorite = favorite
+    if (selectedMovie) {
+      dispatch(toggleFavorite(selectedMovie))
+      if (!wasFavorite) {
+        await alertSuccess(`${selectedMovie.Title} has been added to favorites.`)
+      } else {
+        await alertSuccess(`${selectedMovie.Title} has been removed from favorites.`)
+      }
+    }
+  }
+
   // MAIN CONTENT
   return (
     <section className={clsx(styles["movie-detail"], "g-page")}>
@@ -76,9 +86,18 @@ export default function MovieDetailPage() {
         />
 
         <div className={styles["movie-detail__content"]}>
-          <h2 className={styles["movie-detail__title"]}>
-            {selectedMovie.Title}
-          </h2>
+          <div className={styles["movie-detail__title-wrapper"]}>
+            <h2 className={styles["movie-detail__title"]}>
+              {selectedMovie.Title}
+            </h2>
+            <button
+              className={clsx(styles["movie-detail__favorite"], favorite && styles["m-favorite"])}
+              onClick={handleFavoriteClick}
+              aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+            >
+              <LuHeart className={styles["movie-detail__favorite-icon"]} />
+            </button>
+          </div>
           <p className={styles["movie-detail__plot"]}>{selectedMovie.Plot}</p>
           <div className={clsx(styles["movie-detail__info"], styles["table-wrapper"])}>
             <table className={styles["table-info"]}>

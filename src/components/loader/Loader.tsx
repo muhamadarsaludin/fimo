@@ -2,6 +2,10 @@ import styles from "./loader.module.scss"
 
 export default function Loader() {
   return (
-    <span className={styles.loader}></span>
+    <span
+      role="status"
+      aria-label="Loading"
+      className={styles.loader}
+    ></span>
   )
 }

@@ -31,7 +31,8 @@ export interface MovieState {
   selectedMovie?: MovieDetail
   isModalOpen: boolean
   posterForModal?: string
-  autocompleteSuggestions: MovieSummary[]
+  autocompleteSuggestions: MovieSummary[],
+  favorites: MovieSummary[]
 }
 
 export interface FetchMoviesArgs {

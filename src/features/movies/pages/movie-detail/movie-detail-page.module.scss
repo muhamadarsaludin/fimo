@@ -68,10 +68,16 @@
     flex-direction: column;
   }
 
+  &__title-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--m-dimension-400);
+    margin-bottom: var(--m-dimension-600);
+  }
   &__title {
     font: var(--m-text-display-2);
     color: var(--m-color-foreground-main-primary-default);
-    margin-bottom: var(--m-dimension-600);
+    flex: 1;
     @include breakpoints.desktop {
       font: var(--m-text-display-3);
       font-weight: var(--m-font-weight-600);
@@ -83,6 +89,40 @@
     @include breakpoints.mobile {
       font: var(--m-text-heading-3);
       font-weight: var(--m-font-weight-600);
+    }
+  }
+  &__favorite {
+    all: unset;
+    flex-shrink: 0;
+    cursor: pointer;
+    padding: var(--m-dimension-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    &:hover,
+    &:active {
+      background-color: var(--m-color-rose-400);
+      svg {
+        color: var(--m-color-neutral-0);
+      }
+    }
+    &:active {
+      transform: translateY(-5px);
+    }
+    &.m-favorite {
+      background-color: var(--m-color-rose-500);
+      svg {
+        color: var(--m-color-neutral-0);
+      }
+    }
+    &-icon {
+      display: flex;
+      width: var(--m-dimension-600);
+      height: var(--m-dimension-600);
+      color: var(--m-color-neutral-950);
+      transition: all 0.2s ease;
     }
   }
 
